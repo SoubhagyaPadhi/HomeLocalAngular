@@ -1,0 +1,12 @@
+<p>test-comp works!</p>
+<div *ngIf="isTrue ; then thenBlock
+                   ; else elseBlock"></div>
+<ng-template #thenBlock>
+    SUCCESS
+</ng-template>
+<ng-template #elseBlock>
+    FAILURE
+</ng-template>
+<div *ngFor="let item of personArr">
+    {{item.first_name}}-----{{item.avatar}}
+</div>
