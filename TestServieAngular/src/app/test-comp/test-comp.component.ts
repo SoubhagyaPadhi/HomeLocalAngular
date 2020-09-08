@@ -11,7 +11,7 @@ export class TestCompComponent implements OnInit {
 
   public personArr = [];
   public isTrue = true;
-
+  public errorMessage;
   constructor(private testService:TestServiceService) { }
 
   ngOnInit(): void {
@@ -26,7 +26,8 @@ export class TestCompComponent implements OnInit {
           }
           console.log(this.personArr);
 
-      });
+      },
+      error => this.errorMessage = error);
   }
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class TestServiceService {
   constructor(private httpClient:HttpClient) { }
 
   getData(): Observable<Object>{
-    return this.httpClient.get<Object>(this._url);
+    return this.httpClient.get<Object>(this._url).pipe(catchError(this.errorHandler));
+  }
+
+  errorHandler(error: HttpErrorResponse){
+    return throwError(error.message || "Server Error");
   }
 }
